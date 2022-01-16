@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>剑指 Offer 09. 用两个栈实现队列 | 吴师兄学算法</title>
+    <meta name="generator" content="VuePress 1.8.3">
+    
+    <meta name="description" content="LeetCode 刷题笔记，超多图片，超级详细！">
+    
+    <link rel="preload" href="/assets/css/0.styles.35bcedcf.css" as="style"><link rel="preload" href="/assets/js/app.c293f340.js" as="script"><link rel="preload" href="/assets/js/2.ca2a5bcd.js" as="script"><link rel="preload" href="/assets/js/11.f4f6b0ea.js" as="script"><link rel="prefetch" href="/assets/js/10.d8680121.js"><link rel="prefetch" href="/assets/js/12.f598d65d.js"><link rel="prefetch" href="/assets/js/13.04a95bbd.js"><link rel="prefetch" href="/assets/js/14.722ed86a.js"><link rel="prefetch" href="/assets/js/15.ad09d06b.js"><link rel="prefetch" href="/assets/js/16.a668ae35.js"><link rel="prefetch" href="/assets/js/17.95cbe45b.js"><link rel="prefetch" href="/assets/js/18.12d6aa01.js"><link rel="prefetch" href="/assets/js/19.ed3176f3.js"><link rel="prefetch" href="/assets/js/20.ca43e420.js"><link rel="prefetch" href="/assets/js/21.1319a6f1.js"><link rel="prefetch" href="/assets/js/22.dd88c90c.js"><link rel="prefetch" href="/assets/js/23.29a3be0c.js"><link rel="prefetch" href="/assets/js/24.005955ea.js"><link rel="prefetch" href="/assets/js/25.dad93e7a.js"><link rel="prefetch" href="/assets/js/26.ebb654e1.js"><link rel="prefetch" href="/assets/js/27.926dcb10.js"><link rel="prefetch" href="/assets/js/28.bf9e89d5.js"><link rel="prefetch" href="/assets/js/29.ba1c70df.js"><link rel="prefetch" href="/assets/js/3.5112d87e.js"><link rel="prefetch" href="/assets/js/30.8a556d00.js"><link rel="prefetch" href="/assets/js/31.99f9ef2a.js"><link rel="prefetch" href="/assets/js/32.286aa31e.js"><link rel="prefetch" href="/assets/js/33.a48293a9.js"><link rel="prefetch" href="/assets/js/34.d4c8b304.js"><link rel="prefetch" href="/assets/js/35.6e4908dc.js"><link rel="prefetch" href="/assets/js/36.081ea615.js"><link rel="prefetch" href="/assets/js/37.4eb095bf.js"><link rel="prefetch" href="/assets/js/38.27591ca2.js"><link rel="prefetch" href="/assets/js/39.bdda8148.js"><link rel="prefetch" href="/assets/js/4.6e10c02f.js"><link rel="prefetch" href="/assets/js/40.a39ae214.js"><link rel="prefetch" href="/assets/js/41.94a921c0.js"><link rel="prefetch" href="/assets/js/42.3689ee0e.js"><link rel="prefetch" href="/assets/js/43.08342285.js"><link rel="prefetch" href="/assets/js/44.dcc2c9a9.js"><link rel="prefetch" href="/assets/js/45.d2452eef.js"><link rel="prefetch" href="/assets/js/46.53cd017d.js"><link rel="prefetch" href="/assets/js/47.6d284c7a.js"><link rel="prefetch" href="/assets/js/48.16bc0f03.js"><link rel="prefetch" href="/assets/js/5.2fe4b8a4.js"><link rel="prefetch" href="/assets/js/6.3f4ffd09.js"><link rel="prefetch" href="/assets/js/7.55f963f0.js"><link rel="prefetch" href="/assets/js/8.78b04b99.js"><link rel="prefetch" href="/assets/js/9.e94efab9.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.35bcedcf.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">吴师兄学算法</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="https://space.bilibili.com/28610170" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  B站视频
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://www.algomooc.com/good" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  算法训练营
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://github.com/MisterBooo/misterbooo.github.io" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="https://space.bilibili.com/28610170" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  B站视频
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://www.algomooc.com/good" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  算法训练营
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://github.com/MisterBooo/misterbooo.github.io" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>看动画，拿 Offer 系列</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/003.html" class="sidebar-link">剑指 Offer 03. 数组中重复的数字</a></li><li><a href="/004.html" class="sidebar-link">剑指 Offer 04. 二维数组中的查找</a></li><li><a href="/005.html" class="sidebar-link">剑指 Offer 05. 替换空格</a></li><li><a href="/006.html" class="sidebar-link">剑指 Offer 06. 从尾到头打印链表</a></li><li><a href="/009.html" aria-current="page" class="active sidebar-link">剑指 Offer 09. 用两个栈实现队列</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/009.html#一、题目描述" class="sidebar-link">一、题目描述</a></li><li class="sidebar-sub-header"><a href="/009.html#二、题目解析" class="sidebar-link">二、题目解析</a></li><li class="sidebar-sub-header"><a href="/009.html#三、参考代码" class="sidebar-link">三、参考代码</a></li></ul></li><li><a href="/011.html" class="sidebar-link">剑指 Offer 11. 旋转数组的最小数字</a></li><li><a href="/012.html" class="sidebar-link">剑指 Offer 12. 矩阵中的路径</a></li><li><a href="/018.html" class="sidebar-link">剑指 Offer 18. 删除链表的节点</a></li><li><a href="/021.html" class="sidebar-link">剑指 Offer 21. 调整数组顺序使奇数位于偶数前面</a></li><li><a href="/022.html" class="sidebar-link">剑指 Offer 22. 链表中倒数第k个节点</a></li><li><a href="/024.html" class="sidebar-link">剑指 Offer 24. 反转链表</a></li><li><a href="/025.html" class="sidebar-link">剑指 Offer 25. 合并两个排序的链表</a></li><li><a href="/026.html" class="sidebar-link">剑指 Offer 26. 树的子结构</a></li><li><a href="/030.html" class="sidebar-link">剑指 Offer 30. 包含min函数的栈</a></li><li><a href="/032.html" class="sidebar-link">剑指 Offer 32 - I. 从上到下打印二叉树</a></li><li><a href="/0322.html" class="sidebar-link">剑指 Offer 32 - II. 从上到下打印二叉树 II</a></li><li><a href="/0323.html" class="sidebar-link">剑指 Offer 32 - III. 从上到下打印二叉树 III</a></li><li><a href="/033.html" class="sidebar-link">剑指 Offer 33. 二叉搜索树的后序遍历序列</a></li><li><a href="/035.html" class="sidebar-link">剑指 Offer 35. 复杂链表的复制</a></li><li><a href="/036.html" class="sidebar-link">剑指 Offer 36. 二叉搜索树与双向链表</a></li><li><a href="/039.html" class="sidebar-link">剑指 Offer 39. 数组中出现次数超过一半的数字</a></li><li><a href="/040.html" class="sidebar-link">剑指 Offer 40. 最小的k个数</a></li><li><a href="/041.html" class="sidebar-link">剑指 Offer 41. 数据流中的中位数</a></li><li><a href="/042.html" class="sidebar-link">剑指 Offer 42. 连续子数组的最大和</a></li><li><a href="/045.html" class="sidebar-link">剑指 Offer 45. 把数组排成最小的数</a></li><li><a href="/046.html" class="sidebar-link">剑指 Offer 46. 把数字翻译成字符串</a></li><li><a href="/047.html" class="sidebar-link">剑指 Offer 47. 礼物的最大价值</a></li><li><a href="/050.html" class="sidebar-link">剑指 Offer 50. 第一个只出现一次的字符</a></li><li><a href="/051.html" class="sidebar-link">剑指 Offer 51. 数组中的逆序对</a></li><li><a href="/052.html" class="sidebar-link">剑指 Offer 52. 两个链表的第一个公共节点</a></li><li><a href="/053.html" class="sidebar-link">剑指 Offer 53 - I. 在排序数组中查找数字 I</a></li><li><a href="/0532.html" class="sidebar-link">剑指 Offer 53 - II. 0～n-1中缺失的数字</a></li><li><a href="/054.html" class="sidebar-link">剑指 Offer 54. 二叉搜索树的第k大节点</a></li><li><a href="/055.html" class="sidebar-link">剑指 Offer 55 - I. 二叉树的深度</a></li><li><a href="/0552.html" class="sidebar-link">剑指 Offer 55 - II. 平衡二叉树</a></li><li><a href="/057.html" class="sidebar-link">剑指 Offer 57. 和为s的两个数字</a></li><li><a href="/058.html" class="sidebar-link">剑指 Offer 58 - II. 左旋转字符串</a></li><li><a href="/061.html" class="sidebar-link">剑指 Offer 61. 扑克牌中的顺子</a></li><li><a href="/066.html" class="sidebar-link">剑指 Offer 66. 构建乘积数组</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="剑指-offer-09-用两个栈实现队列"><a href="#剑指-offer-09-用两个栈实现队列" class="header-anchor">#</a> 剑指 Offer 09. 用两个栈实现队列</h1> <p>大家好，我是吴师兄。</p> <p>今天继续来学习《剑指Offer》系列的一道经典题目，依旧给出了非常详细的题解和精美的配图与动画。</p> <h2 id="一、题目描述"><a href="#一、题目描述" class="header-anchor">#</a> 一、题目描述</h2> <p><strong>用两个栈实现一个队列</strong>。队列的声明如下，请实现它的两个函数 <code>appendTail</code> 和 <code>deleteHead</code> ，分别完成在队列尾部插入整数和在队列头部删除整数的功能。(若队列中没有元素，<code>deleteHead</code> 操作返回 <code>-1</code> )</p> <p><strong>示例 1：</strong></p> <div class="language- extra-class"><pre class="language-text"><code>输入：
+[&quot;CQueue&quot;,&quot;appendTail&quot;,&quot;deleteHead&quot;,&quot;deleteHead&quot;]
+[[],[3],[],[]]
+输出：[null,null,3,-1]
+</code></pre></div><p><strong>示例 2：</strong></p> <div class="language- extra-class"><pre class="language-text"><code>输入：
+[&quot;CQueue&quot;,&quot;deleteHead&quot;,&quot;appendTail&quot;,&quot;appendTail&quot;,&quot;deleteHead&quot;,&quot;deleteHead&quot;]
+[[],[],[5],[2],[],[]]
+输出：[null,-1,null,null,5,2]
+</code></pre></div><p><strong>提示：</strong></p> <ul><li><code>1 &lt;= values &lt;= 10000</code></li> <li><code>最多会对 appendTail、deleteHead 进行 10000 次调用</code></li></ul> <h2 id="二、题目解析"><a href="#二、题目解析" class="header-anchor">#</a> 二、题目解析</h2> <p>首先，我们来复习一下栈和队列的特点。</p> <p><strong>1、栈是一个先进后出的线性表</strong>。</p> <p><strong>2、队列是一个先进先出的线性表</strong>。</p> <p>根据这两个特点，如果说想让栈实现队列的<strong>先进先出</strong>的功能，必须得先将栈中最开始进入的元素<strong>栈底元素</strong>第一个出栈，但由于上方有很多其它元素，无法出栈，所以第一步是需要将上方所有元素先出栈。</p> <p><img src="https://article-1257126549.cos.ap-guangzhou.myqcloud.com/blog/szoxw.png" alt="图1"></p> <p>如图 1 所示，5 比 2 更早的加入到栈中，因此想要实现队列的<strong>先进先出</strong>的功能，5 应该比 2 更早的出栈，但它的上方有个其它元素 2。</p> <p>因此，需要先将栈 stack1 中的元素逐个出栈加入到栈 stack2 中，这样原先 stack1 中的栈底元素变成了 stack2 中的栈顶元素，5 可以比后面加入的 2 更早的出栈，实现了队列的<strong>先进先出</strong>的功能。</p> <p><img src="https://article-1257126549.cos.ap-guangzhou.myqcloud.com/blog/ijvj3.png" alt="图 2"></p> <p>接下来，再具体解析一下题目描述中所给的示例的含义。</p> <h4 id="_1、cqueue"><a href="#_1、cqueue" class="header-anchor">#</a> 1、CQueue</h4> <p>首先初始化，没有参数，所以是 []，然后我们注意到 CQueue() 函数是没有返回值的，用 null 来表示（不要问我为什么用 null 表示。。。）</p> <h4 id="_2、deletehead"><a href="#_2、deletehead" class="header-anchor">#</a> 2、deleteHead</h4> <p>删除操作，没有参数，所以是 []，根据题意若队列中没有元素，deleteHead 操作返回 -1 ，所以输出值为 -1 。</p> <h4 id="_3、appendtail"><a href="#_3、appendtail" class="header-anchor">#</a> 3、appendTail</h4> <p>插入操作，有参数，此时是 **5 **，并且 appendTail() 函数没有返回值的，用 null 来表示。</p> <h4 id="_4、appendtail"><a href="#_4、appendtail" class="header-anchor">#</a> 4、appendTail</h4> <p>插入操作，有参数，此时是 **2 **，并且 appendTail() 函数没有返回值的，用 null 来表示。</p> <h4 id="_5、deletehead"><a href="#_5、deletehead" class="header-anchor">#</a> 5、deleteHead</h4> <p>删除操作，没有参数，所以是 []，此时队列中有元素，先进入的是 5，后进入的是 2，根据队列<strong>先进先出</strong>的性质，元素 5 出列，所以返回值是 5 。</p> <h4 id="_6、deletehead"><a href="#_6、deletehead" class="header-anchor">#</a> 6、deleteHead</h4> <p>删除操作，没有参数，所以是 []，此时队列中有元素，只有元素 2，所以返回值是 2 。</p> <hr> <p>基本上看完上面的大白话翻译就可以理解题意，解决问题也不难了。</p> <h4 id="入队操作"><a href="#入队操作" class="header-anchor">#</a> 入队操作</h4> <p>如果是栈的插入操作，那我们可以把元素都先插入到 stack1 中，也就实现了队列的 入队操作 。</p> <h4 id="出队操作"><a href="#出队操作" class="header-anchor">#</a> 出队操作</h4> <ul><li>当 stack2 中不为空时，直接操作，此时在 stack2 中的栈顶元素是最先进入队列的元素，返回该元素即可；</li> <li>如果 stack2 为空且 stack1 也为空，返回 -1；</li> <li>如果 stack2 为空且 stack1 不为空，首先需要把 stack1 中的元素逐个弹出并压入到 stack2 中，然后返回 stack2 的栈顶元素即可。</li></ul> <p><img src="https://article-1257126549.cos.ap-guangzhou.myqcloud.com/blog/ff0y6.jpg" alt="图 3"></p> <p>为了帮助你更好的理解整个过程，我特意做了一组动画，<strong>点开可以查看</strong>：</p> <video id="video" width="700" height="400" muted="muted" controls="controls" poster="https://article-1257126549.cos.ap-guangzhou.myqcloud.com/blog/3hdi5.jpeg"><source src="https://article-1257126549.cos.ap-guangzhou.myqcloud.com/MP4/myoffer009_Github.m4v" type="video/mp4"></video> <h2 id="三、参考代码"><a href="#三、参考代码" class="header-anchor">#</a> 三、参考代码</h2> <div class="language-java extra-class"><pre class="language-java"><code><span class="token comment">// 登录 AlgoMooc 官网获取更多算法图解</span>
+<span class="token comment">// https://www.algomooc.com</span>
+<span class="token comment">// 作者：程序员吴师兄</span>
+<span class="token comment">// 代码有看不懂的地方一定要私聊咨询吴师兄呀，微信 wzb_3377</span>
+<span class="token comment">// Java 中的 Stack 类设计有问题，大部分情况下是使用 LinkedList 来构建栈，但为了结合动画更好的理解这道题目，所以依旧使用 Stack </span>
+<span class="token keyword">class</span> <span class="token class-name">CQueue</span> <span class="token punctuation">{</span>
+
+    <span class="token comment">// 队列的特点，先进先出</span>
+    <span class="token comment">// 栈的特点是先进后出</span>
+    <span class="token comment">// 创建两个栈</span>
+    <span class="token comment">// 创建栈 stack1 用来充当队列</span>
+    <span class="token class-name">Stack</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span> stack1<span class="token punctuation">;</span>
+    
+    <span class="token comment">// 创建栈 stack2 用来辅助 stack1 执行队列的一些复杂操作</span>
+    <span class="token class-name">Stack</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span> stack2<span class="token punctuation">;</span>
+    
+    <span class="token comment">// 这个函数是 creat queue</span>
+    <span class="token comment">// 意思就是初始化队列</span>
+    <span class="token comment">// 由于题目要求我们用两个栈实现队列，所以在这个函数中初始化的是两个栈</span>
+    <span class="token keyword">public</span> <span class="token class-name">CQueue</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+        <span class="token comment">// 初始化 stack1 </span>
+        stack1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Stack</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 初始化 stack2 </span>
+        stack2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Stack</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span>
+    
+    <span class="token comment">// 这个函数的意思是在队列的尾部添加元素</span>
+    <span class="token comment">// 使用栈来完成这个操作的话就是在 stack1 的后面添加元素就行</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">appendTail</span><span class="token punctuation">(</span><span class="token keyword">int</span> value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+        <span class="token comment">// 直接将元素存放到 stack1 中</span>
+        <span class="token comment">// 比如原队列为</span>
+        <span class="token comment">//       -------------</span>
+        <span class="token comment">//  队尾  1  2  3  4  5  队头</span>
+        <span class="token comment">//       -------------</span>
+        <span class="token comment">// 当前 value 为 6 </span>
+        <span class="token comment">// 那么由 stack1 和 stack2 组成的队列就是</span>
+        <span class="token comment">//       ----------------</span>
+        <span class="token comment">//  队尾  6  1  2  3  4  5  队头</span>
+        <span class="token comment">//       ----------------</span>
+        stack1<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span>
+    
+    <span class="token comment">// 这个函数的意思是在队列的头部删除元素</span>
+    <span class="token comment">// 由于队列的特点是先进先出，所以需要借助 stack1 和 stack2 去定位到之前存储进来的元素</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">deleteHead</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+        <span class="token comment">// 1、如果 stack2 栈不为空，说明 stack2 里面已经存储了一些元素，</span>
+        <span class="token comment">// 并且 stack2 的栈顶元素就是两个栈中最早加入的元素</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>stack2<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token comment">// 返回 stack2 的栈顶元素，满足了队列先进先出的特点</span>
+            <span class="token keyword">return</span> stack2<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">// 2、如果 stack2 为空，并且发现 stack1 也为空，</span>
+        <span class="token comment">// 说明 stack1 和 stack2 构建的队列中没有元素，</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>stack1<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token comment">// 根据题意，直接返回 -1</span>
+            <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">// 3、如果 stack2 为空，但 stack1 不为空</span>
+        <span class="token comment">// 那么需要先将 stack1 中的元素依次【倒序】放入 stack2 中</span>
+        <span class="token comment">// 对于 stack1 来说，越早加入的元素在【栈底】，越晚加入的元素在【栈顶】</span>
+        <span class="token comment">// 由于队列是【先进先出】，所以删除的应该是 stack1 的【栈底】元素</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token operator">!</span>stack1<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token comment">// 获取 stack1 的栈顶元素并将该元素从 stack1 中弹出</span>
+            <span class="token keyword">int</span> topValue <span class="token operator">=</span> stack1<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">// 把该元素加入到 stack2</span>
+            <span class="token comment">// 这样 stack2 的栈顶元素就是 stack1 的栈底元素</span>
+            stack2<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>topValue<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">// 4、返回 stack2 的栈顶元素，满足了队列先进先出的特点</span>
+        <span class="token keyword">return</span> stack2<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/006.html" class="prev">
+        剑指 Offer 06. 从尾到头打印链表
+      </a></span> <span class="next"><a href="/011.html">
+        剑指 Offer 11. 旋转数组的最小数字
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.c293f340.js" defer></script><script src="/assets/js/2.ca2a5bcd.js" defer></script><script src="/assets/js/11.f4f6b0ea.js" defer></script>
+  </body>
+</html>
